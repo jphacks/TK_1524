@@ -39,6 +39,22 @@ module.exports = [
         "clobbers": [
             "navigator.compass"
         ]
+    },
+    {
+        "file": "plugins/org.awokenwell.proximity/www/proximity.js",
+        "id": "org.awokenwell.proximity.proximity",
+        "pluginId": "org.awokenwell.proximity",
+        "clobbers": [
+            "navigator.proximity"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-lightSensor/www/light.js",
+        "id": "cordova-plugin-lightSensor.light",
+        "pluginId": "cordova-plugin-lightSensor",
+        "clobbers": [
+            "cordova-plugin-lightSensor"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -46,7 +62,9 @@ module.exports.metadata =
 {
     "cordova-plugin-whitelist": "1.2.0",
     "cordova-plugin-device-motion": "1.2.0",
-    "cordova-plugin-device-orientation": "1.0.2"
+    "cordova-plugin-device-orientation": "1.0.2",
+    "org.awokenwell.proximity": "0.2.1",
+    "cordova-plugin-lightSensor": "0.2.1"
 }
 // BOTTOM OF METADATA
 });

@@ -43,6 +43,7 @@
 		FB84C3E8CCC8435999C0A7F6 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 262172190E174E6CB9A000C9 /* CoreMotion.framework */; };
 		1F6B5A73DACF457DBF778D08 /* CDVCompass.m in Sources */ = {isa = PBXBuildFile; fileRef = 448DBE3EF5C346B39AC21AAD /* CDVCompass.m */; };
 		AF567F36FA474D59BA137C99 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F1B64E3B474E17B29B370F /* CoreLocation.framework */; };
+		04FB8FF580634227AAEE5B7E /* CDVProximity.m in Sources */ = {isa = PBXBuildFile; fileRef = C72C25BFABA542DCAA9F7486 /* CDVProximity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +115,8 @@
 		448DBE3EF5C346B39AC21AAD /* CDVCompass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVCompass.m"; path = "cordova-plugin-device-orientation/CDVCompass.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		6CF825D565004AE49ADFD0D9 /* CDVCompass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVCompass.h"; path = "cordova-plugin-device-orientation/CDVCompass.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		D0F1B64E3B474E17B29B370F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "CoreLocation.framework"; path = "System/Library/Frameworks/CoreLocation.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
+		C72C25BFABA542DCAA9F7486 /* CDVProximity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVProximity.m"; path = "org.awokenwell.proximity/CDVProximity.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		0F3D6770FD7441D9B547D51B /* CDVProximity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVProximity.h"; path = "org.awokenwell.proximity/CDVProximity.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +223,8 @@
 				4CC56E1D7E704EFF99655273 /* CDVAccelerometer.h */,
 				448DBE3EF5C346B39AC21AAD /* CDVCompass.m */,
 				6CF825D565004AE49ADFD0D9 /* CDVCompass.h */,
+				C72C25BFABA542DCAA9F7486 /* CDVProximity.m */,
+				0F3D6770FD7441D9B547D51B /* CDVProximity.h */,
 			);
 			name = Plugins;
 			path = "HelloCordova/Plugins";
@@ -406,6 +411,7 @@
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
 				8E742D3E1FEC47B3B8E35149 /* CDVAccelerometer.m in Sources */,
 				1F6B5A73DACF457DBF778D08 /* CDVCompass.m in Sources */,
+				04FB8FF580634227AAEE5B7E /* CDVProximity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

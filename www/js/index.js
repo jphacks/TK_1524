@@ -23,6 +23,9 @@
     var devicedata = function(){
         navigator.accelerometer.getCurrentAcceleration(accelerometerSuccess, accelerometerError);
         navigator.compass.getCurrentHeading(compassSuccess, compassError);
+        navigator.proximity.getProximityState(proximitySuccess);
+        window.light = cordova.require("cordova-plugin-lightSensor.light");
+        light.getLightState(lightSuccess);
     };
     var accelerometerSuccess = function(acceleration) {
         $('#viewacceleration').html("x軸：" + acceleration.x + "<br>" + "y軸：" + acceleration.y + "<br>" + "z軸：" + acceleration.z + "<br>");
@@ -38,6 +41,14 @@
 
     var compassError = function(e) {
         alert(e);
+    };
+
+    var proximitySuccess = function(proximity) {
+        $("#proximity").html("接近値：" + proximity);
+    };
+
+    var lightSuccess = function(light) {
+        $("#light").html("輝度：" + light);
     };
 
     var options = {

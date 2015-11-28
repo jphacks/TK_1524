@@ -15,6 +15,12 @@
         },
         "cordova-plugin-device-orientation": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
+        "org.awokenwell.proximity": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
+        "cordova-plugin-lightSensor": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
         }
     },
     "dependent_plugins": {}

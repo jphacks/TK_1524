@@ -20,6 +20,9 @@
     <feature name="Compass">
         <param name="ios-package" value="CDVCompass" />
     </feature>
+    <feature name="Proximity">
+        <param name="ios-package" value="CDVProximity" />
+    </feature>
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
     <name>HelloCordova</name>

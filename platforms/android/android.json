@@ -19,6 +19,14 @@
                         {
                             "xml": "<feature name=\"Compass\"><param name=\"android-package\" value=\"org.apache.cordova.deviceorientation.CompassListener\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Proximity\"><param name=\"android-package\" value=\"org.awokenwell.proximity.ProximitySensorListener\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Light\"><param name=\"android-package\" value=\"tools.mango.cordova.plugin.android.LightSensorListener\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -47,6 +55,12 @@
             "PACKAGE_NAME": "io.cordova.hellocordova"
         },
         "cordova-plugin-device-orientation": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
+        "org.awokenwell.proximity": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
+        "cordova-plugin-lightSensor": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         }
     },
@@ -97,11 +111,29 @@
             "clobbers": [
                 "navigator.compass"
             ]
+        },
+        {
+            "file": "plugins/org.awokenwell.proximity/www/proximity.js",
+            "id": "org.awokenwell.proximity.proximity",
+            "pluginId": "org.awokenwell.proximity",
+            "clobbers": [
+                "navigator.proximity"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-lightSensor/www/light.js",
+            "id": "cordova-plugin-lightSensor.light",
+            "pluginId": "cordova-plugin-lightSensor",
+            "clobbers": [
+                "cordova-plugin-lightSensor"
+            ]
         }
     ],
     "plugin_metadata": {
         "cordova-plugin-whitelist": "1.2.0",
         "cordova-plugin-device-motion": "1.2.0",
-        "cordova-plugin-device-orientation": "1.0.2"
+        "cordova-plugin-device-orientation": "1.0.2",
+        "org.awokenwell.proximity": "0.2.1",
+        "cordova-plugin-lightSensor": "0.2.1"
     }
 }
