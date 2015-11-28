@@ -18,19 +18,39 @@
  */
 
  window.onload = function () {
-    var accelerate = function(){
-        navigator.accelerometer.watchAcceleration(accelerometerSuccess, accelerometerError, options);
+
+
+    var devicedata = function(){
+        for(;;){
+            navigator.accelerometer.getCurrentAcceleration(accelerometerSuccess, accelerometerError);
+            navigator.compass.getCurrentHeading(compassSuccess, compassError);
+            var d1 = new Date().getTime();
+            var d2 = new Date().getTime();
+            while(d2 < d1+1000*2){
+                d2=new Date().getTime();
+            }
+        }
     };
     var accelerometerSuccess = function(acceleration) {
-        $('#acceleration').html("x軸：" + acceleration.x + "<br>" + "y軸：" + acceleration.y + "<br>" + "z軸：" + acceleration.z + "<br>");
+        $('#viewacceleration').html("x軸：" + acceleration.x + "<br>" + "y軸：" + acceleration.y + "<br>" + "z軸：" + acceleration.z + "<br>");
     };
 
     var accelerometerError = function(e) {
         alert(e);
     };
+
+    var compassSuccess = function(compass) {
+        $("#compass").html("方角：" + heading.magneticHeading + "<br>");
+    };
+
+    var compassError = function(e) {
+        alert(e);
+    };
+
     var options = {
         frequency: 1000
     };
-    accelerate();
+
+    devicedata();
     
 };

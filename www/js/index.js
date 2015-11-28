@@ -18,8 +18,11 @@
  */
 
  window.onload = function () {
-    var accelerate = function(){
-        navigator.accelerometer.watchAcceleration(accelerometerSuccess, accelerometerError, options);
+
+
+    var devicedata = function(){
+        navigator.accelerometer.getCurrentAcceleration(accelerometerSuccess, accelerometerError);
+        navigator.compass.getCurrentHeading(compassSuccess, compassError);
     };
     var accelerometerSuccess = function(acceleration) {
         $('#viewacceleration').html("x軸：" + acceleration.x + "<br>" + "y軸：" + acceleration.y + "<br>" + "z軸：" + acceleration.z + "<br>");
@@ -28,9 +31,21 @@
     var accelerometerError = function(e) {
         alert(e);
     };
+
+    var compassSuccess = function(compass) {
+        $("#compass").html("方角：" + compass.magneticHeading + "<br>");
+    };
+
+    var compassError = function(e) {
+        alert(e);
+    };
+
     var options = {
         frequency: 1000
     };
-    accelerate();
+
+    $(document).on("click", ".app", function() {
+        devicedata();
+    });
     
 };
