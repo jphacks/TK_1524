@@ -19,15 +19,23 @@
 
  window.onload = function () {
 
-
+    var accelera1=0;
+    var accelera2=0;
+    var accelera3=0;
+    var comp=0;
+    var prox;
+    var li;
     var devicedata = function(){
-        navigator.accelerometer.getCurrentAcceleration(accelerometerSuccess, accelerometerError);
         navigator.compass.getCurrentHeading(compassSuccess, compassError);
+        navigator.accelerometer.getCurrentAcceleration(accelerometerSuccess, accelerometerError);
         navigator.proximity.getProximityState(proximitySuccess);
         window.light = cordova.require("cordova-plugin-lightSensor.light");
         light.getLightState(lightSuccess);
     };
     var accelerometerSuccess = function(acceleration) {
+        accelera1 = acceleration.x;
+        accelera2 = acceleration.y;
+        accelera3 = acceleration.z;
         $('#viewacceleration').html("x軸：" + acceleration.x + "<br>" + "y軸：" + acceleration.y + "<br>" + "z軸：" + acceleration.z + "<br>");
     };
 
@@ -36,6 +44,7 @@
     };
 
     var compassSuccess = function(compass) {
+        comp = compass.magneticHeading;
         $("#compass").html("方角：" + compass.magneticHeading + "<br>");
     };
 
@@ -44,20 +53,19 @@
     };
 
     var proximitySuccess = function(proximity) {
+        var prox = proximity;
         $("#proximity").html("接近値：" + proximity);
     };
 
     var lightSuccess = function(light) {
+        var li = light;
         $("#light").html("輝度：" + light);
     };
 
     var options = {
         frequency: 1000
     };
-
-    $(document).on("click", ".app", function() {
-        devicedata();
-    });
+    
 
     //サウンド部分
     window.AudioContext = window.AudioContext||window.webkitAudioContext;
@@ -68,6 +76,15 @@
     });
     var play = function(noteId){
         var osciillatorNode = audioContext.createOscillator();
+        if (comp < 90) {
+            osciillatorNode.type = 'sine';
+        } else if (comp < 180) {
+            osciillatorNode.type = 'square';
+        } else if(comp < 270) {
+            osciillatorNode.type = 'sawtooth';
+        } else{
+            osciillatorNode.type = 'triangle';
+        }
         osciillatorNode.start = osciillatorNode.start || osciillatorNode.noteOn;
      
         //音程を設定
@@ -90,13 +107,36 @@
      
         //再生開始時間を指定する
         osciillatorNode.start(play.count || 0);
-     
-        play.count = play.count + 2;
+        
+        play.count = play.count + 0.5;
         return play;
     };
     play.count = 0;
-     
-    //ドレミファソファミレド
-    play('C')('D')('E')('F')('G')('F')('E')('D')('C');
-    
+    setInterval(function(){
+        navigator.compass.getCurrentHeading(compassSuccess, compassError);
+        navigator.accelerometer.getCurrentAcceleration(accelerometerSuccess, accelerometerError);
+        var d1 = new Date().getTime();
+        var d2 = new Date().getTime();
+        function sleep(time, callback){
+
+            setTimeout(callback, time);
+
+        }
+        sleep(100, function (){
+            if(accelera1 < 0 && accelera2 < 0 && accelera3 <= 10){
+                play('D');
+            }else if(accelera1 <= 2 && accelera2 <= 2 && accelera3 <=10){
+                play('C');
+            } else if(accelera1 <=2){
+                play('Db');
+            } else if(accelera2 <=2){
+                play('Eb');
+            } else if(accelera3 <= 10) {
+                play('E');
+            } else {
+                play('F');
+            }
+        });
+        
+    }, 400);
 };
