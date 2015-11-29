@@ -36,7 +36,6 @@
         accelera1 = acceleration.x;
         accelera2 = acceleration.y;
         accelera3 = acceleration.z;
-        $('#viewacceleration').html("x軸：" + acceleration.x + "<br>" + "y軸：" + acceleration.y + "<br>" + "z軸：" + acceleration.z + "<br>");
     };
 
     var accelerometerError = function(e) {
@@ -45,7 +44,6 @@
 
     var compassSuccess = function(compass) {
         comp = compass.magneticHeading;
-        $("#compass").html("方角：" + compass.magneticHeading + "<br>");
     };
 
     var compassError = function(e) {
@@ -54,12 +52,10 @@
 
     var proximitySuccess = function(proximity) {
         var prox = proximity;
-        $("#proximity").html("接近値：" + proximity);
     };
 
     var lightSuccess = function(light) {
         var li = light;
-        $("#light").html("輝度：" + light);
     };
 
     var options = {
