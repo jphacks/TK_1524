@@ -58,5 +58,45 @@
     $(document).on("click", ".app", function() {
         devicedata();
     });
+
+    //サウンド部分
+    window.AudioContext = window.AudioContext||window.webkitAudioContext;
+    var audioContext = new AudioContext();
+    var note = {};
+    ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'].forEach(function(v, i){
+        note[v] = i;
+    });
+    var play = function(noteId){
+        var osciillatorNode = audioContext.createOscillator();
+        osciillatorNode.start = osciillatorNode.start || osciillatorNode.noteOn;
+     
+        //音程を設定
+        var frequency = parseInt(440 * Math.pow(Math.pow(2,1/12), (3-12) + note[noteId]), 10);
+        osciillatorNode.frequency.value = frequency;
+     
+        //音量を少しづつ下げ音色をソフトにする
+        var gainNode = audioContext.createGain();
+        gainNode.gain.setValueAtTime(0, play.count);
+        gainNode.gain.linearRampToValueAtTime(1.0, play.count + 0.01);
+        gainNode.gain.linearRampToValueAtTime(0.7, play.count + 0.20);
+        gainNode.gain.linearRampToValueAtTime(0.4, play.count + 0.40);
+        gainNode.gain.linearRampToValueAtTime(0.0, play.count + 0.80);
+     
+        //接続（発生源 → 加工）
+        osciillatorNode.connect(gainNode);
+     
+        //接続（加工 → 出力）
+        gainNode.connect(audioContext.destination);
+     
+        //再生開始時間を指定する
+        osciillatorNode.start(play.count || 0);
+     
+        play.count = play.count + 2;
+        return play;
+    };
+    play.count = 0;
+     
+    //ドレミファソファミレド
+    play('C')('D')('E')('F')('G')('F')('E')('D')('C');
     
 };
