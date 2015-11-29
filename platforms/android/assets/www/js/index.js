@@ -115,6 +115,30 @@
     setInterval(function(){
         navigator.compass.getCurrentHeading(compassSuccess, compassError);
         navigator.accelerometer.getCurrentAcceleration(accelerometerSuccess, accelerometerError);
+        $('#app').animate(
+            {'z-index': 1},//z-indexを0から1に変更する
+            {
+            duration: 10, //アニメーションの時間
+            //引数num：処理途中の変化している値
+            step: function () {
+            //処理途中の値を使ってちょっとずつ回転させる
+            $(this).css({
+                transform: 'rotate(' + comp + 'deg)'
+            });
+            },
+            //完了時の処理
+            //次回のことを考えz-indexを1から0に戻す
+            complete: function () {
+                $('#app').css('z-index', 0);
+            }
+        }
+        );
+        var dep = 360 / accelera3;
+        var col1 = Math.floor( accelera1*10 );
+        col1 = (col1 % 10);
+        var col2 = Math.floor( accelera2*10 );
+        col2 = (col2 % 10);
+        $('#main').css("background", "linear-gradient("+ dep +"deg, #"+ col1 + col1 + col1 +", #" + col2 + col2 + col2 + ")");
         var d1 = new Date().getTime();
         var d2 = new Date().getTime();
         function sleep(time, callback){
